@@ -13,7 +13,30 @@
     width: 200px;
     height: 250px;
     border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.song{
+.song img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+}
+.song img.large{
+     width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    animation: rotation linear infinite 20s;
     
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
