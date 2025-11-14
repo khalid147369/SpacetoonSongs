@@ -1,0 +1,61 @@
+
+      /* minimal panel styling */
+      .panel {
+        max-width: 720px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      input[type="file"] {
+        padding: 6px 0;
+      }
+      button {
+        padding: 10px 14px;
+        background: var(--color-segundary);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .preview {
+        margin-top: 12px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .preview img {
+        max-width: 160px;
+        max-height: 120px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #eee;
+      }
+      .msg {
+        margin-top: 12px;
+        font-size: 0.95rem;
+      }
+      .msg.error {
+        color: #b00020;
+      }
+      .msg.success {
+        color: #0b7a3f;
+      }
