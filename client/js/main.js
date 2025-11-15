@@ -93,7 +93,7 @@ function renderWithTemplate() {
     // clona la plantilla (true para clonar nodos hijos)
     const node = tpl.content.cloneNode(true);
     node.querySelector(".img").src =item.image;
-    console.log("image: ",item.image);
+    console.log("image source : ",item.image);
     node.querySelector(".img").id = item._id;
     node.querySelector(".img").alt = item.title;
     node.querySelector(".title").textContent = item.title;
