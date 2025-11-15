@@ -32,7 +32,6 @@ let cardsData = [
   },
 ];
 
-const BACKEND_URL = "https://spacesongsbackend.onrender.com";
 
 async function mostrarDatos() {
   const data = await getSongs();
@@ -89,15 +88,15 @@ function renderWithTemplate() {
 
   // create cards from template
   cardsData.forEach((item, index) => {
-    console.log(BACKEND_URL + item.audio);
+
     // clona la plantilla (true para clonar nodos hijos)
     const node = tpl.content.cloneNode(true);
-    node.querySelector(".img").src = BACKEND_URL + item.image;
+    node.querySelector(".img").src =item.image;
     node.querySelector(".img").id = item._id;
     node.querySelector(".img").alt = item.title;
     node.querySelector(".title").textContent = item.title;
     node.querySelector(".text").textContent = item.text;
-    node.querySelector(".audio").src = BACKEND_URL + item.audio;
+    node.querySelector(".audio").src =item.audio;
     node.querySelector(".audio").id = index;
 
     // pass item to rotate
