@@ -40,7 +40,7 @@ async function mostrarDatos() {
   renderWithTemplate();
 }
 
-mostrarDatos();
+//mostrarDatos();
 
 // datos de ejemplo (podrían venir de una API)
 
@@ -81,6 +81,7 @@ const cardMechanism = (imge, aud) => {
     togglePlayAudio();
   });
 };
+
 /* ===== Enfoque A: template + cloneNode ===== */
 function renderWithTemplate() {
   const tpl = document.getElementById("card-template");
@@ -92,6 +93,7 @@ function renderWithTemplate() {
     // clona la plantilla (true para clonar nodos hijos)
     const node = tpl.content.cloneNode(true);
     node.querySelector(".img").src =item.image;
+    console.log("image: ",item.image);
     node.querySelector(".img").id = item._id;
     node.querySelector(".img").alt = item.title;
     node.querySelector(".title").textContent = item.title;
@@ -105,7 +107,6 @@ function renderWithTemplate() {
     //animation delay for each card
     setTimeout(() => {
       target.appendChild(node);
-      console.log(index);
     }, index * 300);
   });
   // handle user login state
