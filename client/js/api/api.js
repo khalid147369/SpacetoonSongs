@@ -70,6 +70,10 @@ export async function logoutUser(token) {
     return response.data;
   } catch (error) {
     console.log(error);
+<<<<<<< HEAD
     throw error.response ? error.response.data : { error: "Network error" }; 
+=======
+    throw error.response ? error.response.data : { error: "Network error" };
+>>>>>>> f7e53c02f95b97e9e98c1a48b4886efeb37f1125
   }
 }
