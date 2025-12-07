@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/css.css" />
+    <link rel="stylesheet" href="../css/songsSection.css" />
+
+    <title>Home</title>
+  </head>
+  <body>
+    <main class="">
+      <!-- header section -->
+      <section>
+        <header class="site-header">
+          <div class=" header-inner">
+            <figure><img width="90px" src="../img/spacetoonLogo.png" alt=""></figure>
+            <nav class="main-nav" aria-label="Main navigation">
+              <a id="profile_link" href="/profile.html"></a>
+              <a id="login_link" href="https://spacetoonsongs.onrender.com/login.html">Login</a>
+              <a style="display: none;" id="logout_link" >Logout</a>
+              <a id="panel_link" href="https://spacetoonsongs.onrender.com/panel.html">Panel</a>
+            </nav>
+          </div>
+        </header>
+      </section>
+
+      <!-- video section -->
+      <section class="video-section"></section>
+
+      <div style="margin: 100px 0">
+        <hr />
+        <h2 style="text-align: center">Songs List</h2>
+        <hr />
+      </div>
+
+      <!-- songs section -->
+      <section>
+        <template id="card-template">
+          <article class="card">
+            <div class="song">
+              <h3 class="title"></h3>
+              <img class="img" src="" alt="" />
+              <audio class="audio" hidden src=""></audio>
+              <p class="text"></p>
+            </div>
+          </article>
+        </template>
+        <!-- grid-template -->
+        <div class="container">
+          <div class="grid" id="grid-template"></div>
+        </div>
+      </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../js/api/refreshToken.js"></script>
+    <script type="module" src="../js/api/api.js"></script>
+    <script type="module" src="../js/store/store.js"></script>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/api/refreshToken.js"></script>
+  </body>
+</html>

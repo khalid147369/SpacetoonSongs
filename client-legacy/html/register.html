@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/register/register.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Create account</h1>
+      <form id="registerForm" novalidate>
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          required
+          minlength="3"
+          placeholder="your username"
+        />
+
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="you@example.com"
+        />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          minlength="6"
+          placeholder="password"
+        />
+
+        <button type="submit" id="submitBtn">Register</button>
+        <div id="message" class="msg" aria-live="polite"></div>
+      </form>
+      <small
+        >you have account?<a style="color: green" href="./login.html">
+          login here.</a
+        ></small
+      >
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../js/api/refreshToken.js"></script>
+    <script type="module" src="../js/register.js"></script>
+  </body>
+</html>
