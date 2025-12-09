@@ -4,12 +4,10 @@ export default defineNuxtConfig({
     future: {
         compatibilityVersion: 4
     },
-    // Add this:
-    modules: ['@nuxtjs/tailwindcss'],
-
-    // Keep your existing CSS imports here so old styles still work!
+    modules: [
+        '@nuxtjs/tailwindcss'
+    ],
     css: [
-        '~/assets/css/tailwind.css', // Tailwind first
-        '~/assets/css/css.css'       // Your legacy styles second
+        '~/assets/css/tailwind.css'
     ]
 })

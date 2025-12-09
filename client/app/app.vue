@@ -1,9 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gray-100"> <NuxtLayout>
-      
+  <div class="min-h-screen">
+    <Header />
+    <main>
       <NuxtPage />
-
-    </NuxtLayout>
-    
+    </main>
   </div>
 </template>
+
+<style scoped>
+/* Global base styles handled by Tailwind */
+</style>
