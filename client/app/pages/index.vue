@@ -1,27 +1,66 @@
 <template>
-  <div class="py-8">
-    <section class="relative mx-8 min-h-80 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600">
-      <img src="../assets/imgs/lu.png" alt="Luffy" class="absolute bottom-0 left-[15%] h-auto w-[250px]" />
-      <img src="../assets/imgs/na.png" alt="Naruto" class="absolute bottom-0 left-1/2 h-auto w-[220px] -translate-x-1/2" />
-      <img src="../assets/imgs/go.png" alt="Goku" class="absolute bottom-0 right-[15%] h-auto w-[200px]" />
-    </section>
-
-    <div class="mx-auto my-16 flex items-center gap-8 px-8">
-      <hr class="flex-1 border-t-2 border-gray-300" />
-      <h2 class="whitespace-nowrap text-4xl font-bold text-gray-800">
-        Songs
-      </h2>
-      <hr class="flex-1 border-t-2 border-gray-300" />
+  <div>
+    <div class="heroSection flex h-screen items-center justify-center">
+      <h1 class="text-5xl font-bold text-blue-900">Spacetoon World</h1>
     </div>
-
-    <section class="px-8">
-      <div class="mx-auto max-w-6xl">
-        <div class="grid auto-fill gap-8 [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))]">
+    <div class="py-6">
+      <div class=" divider mx-auto my-10 flex items-center gap-8 px-8">
+        <hr class="flex-1 border-t-4 border-blue-900" />
+        <h2 class="whitespace-nowrap text-4xl font-bold text-blue-900">Our Heros</h2>
+        <hr class="flex-1 border-t-4 border-blue-900" />
+      </div>
+      <div class="ourHeros cards mx-8 mt-8 flex justify-center gap-8">
+        <div
+          class="w-full max-w-sm rounded-lg border border-gray-700 bg-[#1f2937] shadow"
+        >
+          <img
+            class="w-full rounded-t-lg"
+            src="../assets/imgs/lu.png"
+            alt="Luffy"
+          />
+          <div class="p-5">
+            <h1 class="mb-2 text-2xl font-bold tracking-tight text-white">
+              Luffy
+            </h1>
+          </div>
+        </div>
+        <div
+          class="w-full max-w-sm rounded-lg border border-gray-700 bg-[#1f2937] shadow"
+        >
+          <img
+            class="w-full rounded-t-lg"
+            src="../assets/imgs/na.png"
+            alt="Naruto"
+          />
+          <div class="p-5">
+            <h1 class="mb-2 text-2xl font-bold tracking-tight text-white">
+              Naruto
+            </h1>
+          </div>
+        </div>
+        <div
+          class="w-full max-w-sm rounded-lg border border-gray-700 bg-[#1f2937] shadow"
+        >
+          <img
+            class="w-full rounded-t-lg"
+            src="../assets/imgs/go.png"
+            alt="Goku"
+          />
+          <div class="p-5">
+            <h1 class="mb-2 text-2xl font-bold tracking-tight text-white">
+              Goku
+            </h1>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="divider mx-auto my-16 flex items-center gap-8 px-8">
+      <hr class="flex-1 border-t-4 border-blue-900" />
+      <h2 class="whitespace-nowrap text-4xl font-bold text-blue-900">Songs</h2>
+      <hr class="flex-1 border-t-4 border-blue-900" />
+    </div>
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

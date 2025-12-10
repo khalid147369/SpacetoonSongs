@@ -1,10 +1,7 @@
 <template>
-  <div class="min-h-screen">
-    <Header />
-    <main>
-      <NuxtPage />
-    </main>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <style scoped>
