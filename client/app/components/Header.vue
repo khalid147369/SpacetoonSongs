@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-100 bg-blue-900 py-1 shadow-lg">
+  <header class="sticky top-0 z-[9999] bg-blue-900 py-1 shadow-lg">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-8 px-8">
       <div>
         <div class="flex items-center justify-center">

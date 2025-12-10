@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="heroSection flex h-screen items-center justify-center">
-      <h1 class="text-5xl font-bold text-blue-900">Spacetoon World</h1>
+  <div class="bg-[#9C41EF]">
+    <div class="heroSection">
+      <ImageSlider />
     </div>
     <div class="py-6">
       <div class=" divider mx-auto my-10 flex items-center gap-8 px-8">
-        <hr class="flex-1 border-t-4 border-blue-900" />
-        <h2 class="whitespace-nowrap text-4xl font-bold text-blue-900">Our Heros</h2>
-        <hr class="flex-1 border-t-4 border-blue-900" />
+        <hr class="flex-1 border-t-4 border-white-900" />
+        <h2 class="whitespace-nowrap text-4xl font-bold text-white">Our Heros</h2>
+        <hr class="flex-1 border-t-4 border-white-900" />
       </div>
       <div class="ourHeros cards mx-8 mt-8 flex justify-center gap-8">
         <div
@@ -56,9 +56,9 @@
     </div>
 
     <div class="divider mx-auto my-16 flex items-center gap-8 px-8">
-      <hr class="flex-1 border-t-4 border-blue-900" />
-      <h2 class="whitespace-nowrap text-4xl font-bold text-blue-900">Songs</h2>
-      <hr class="flex-1 border-t-4 border-blue-900" />
+      <hr class="flex-1 border-t-4 border-white-900" />
+      <h2 class="whitespace-nowrap text-4xl font-bold text-white">Songs</h2>
+      <hr class="flex-1 border-t-4 border-white-900" />
     </div>
   </div>
 </template>
