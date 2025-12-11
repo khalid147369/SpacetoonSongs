@@ -14,6 +14,7 @@ type HydrationStrategies = {
 type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }> & T
 
 
+export const CustomAudioPlayer: typeof import("../app/components/CustomAudioPlayer.vue")['default']
 export const Header: typeof import("../app/components/Header.vue")['default']
 export const ImageSlider: typeof import("../app/components/ImageSlider.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
@@ -39,6 +40,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
+export const LazyCustomAudioPlayer: LazyComponent<typeof import("../app/components/CustomAudioPlayer.vue")['default']>
 export const LazyHeader: LazyComponent<typeof import("../app/components/Header.vue")['default']>
 export const LazyImageSlider: LazyComponent<typeof import("../app/components/ImageSlider.vue")['default']>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
