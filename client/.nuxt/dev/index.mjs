@@ -1341,7 +1341,7 @@ async function errorHandler(error, event) {
 
 const rootDir = "E:/my_Projects/SpacetoonSongs/client";
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"icon","type":"image/png","href":"~/assets/imgs/log.png"}],"style":[],"script":[],"noscript":[]};
 
 const appRootTag = "div";
 

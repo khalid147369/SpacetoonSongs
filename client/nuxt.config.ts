@@ -5,9 +5,21 @@ export default defineNuxtConfig({
         compatibilityVersion: 4
     },
     modules: [
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+        '@pinia/nuxt'
     ],
     css: [
         '~/assets/css/tailwind.css'
-    ]
+    ],
+    app: {
+        head: {
+            link: [
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    href: '~/assets/imgs/log.png'
+                }
+            ]
+        }
+    }
 })
