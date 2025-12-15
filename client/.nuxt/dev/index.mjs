@@ -635,6 +635,12 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
+      "/api/**": {
+        "proxy": {
+          "to": "https://spacesongsbackend.onrender.com/api/**",
+          "_proxyStripBase": "/api"
+        }
+      },
       "/_nuxt/builds/meta/**": {
         "headers": {
           "cache-control": "public, max-age=31536000, immutable"
@@ -647,7 +653,9 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {}
+  "public": {
+    "apiBase": "/api"
+  }
 };
 const envOptions = {
   prefix: "NITRO_",
@@ -1341,7 +1349,7 @@ async function errorHandler(error, event) {
 
 const rootDir = "E:/my_Projects/SpacetoonSongs/client";
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"icon","type":"image/png","href":"~/assets/imgs/log.png"}],"style":[],"script":[],"noscript":[]};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"icon","type":"image/png","href":"/app/assets/imgs/"}],"style":[],"script":[],"noscript":[]};
 
 const appRootTag = "div";
 

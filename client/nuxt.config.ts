@@ -17,9 +17,17 @@ export default defineNuxtConfig({
                 {
                     rel: 'icon',
                     type: 'image/png',
-                    href: '~/assets/imgs/log.png'
+                    href: '/app/assets/imgs/log.png'
                 }
             ]
         }
+    },
+    runtimeConfig: {
+        public: {
+            apiBase: process.env.API_BASE_URL
+        }
+    },
+    routeRules: {
+        '/api/**': { proxy: 'https://spacesongsbackend.onrender.com/api/**' }
     }
 })

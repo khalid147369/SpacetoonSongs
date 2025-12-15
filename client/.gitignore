@@ -1,0 +1,10 @@
+# Environment variables
+.env
+
+# Nuxt build outputs
+.nuxt
+.output
+dist
+
+# Dependencies
+node_modules

@@ -1,16 +1,14 @@
 <script setup lang="ts">
-interface Song {
-  _id: string;
-  title: string;
-  image: string;
-  audio: string;
-}
+import { useSongsStore } from "../../stores/songs";
+import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
-const {
-  data: songs,
-  pending,
-  error,
-} = await useFetch<Song[]>("https://spacesongsbackend.onrender.com/api/songs");
+const songsStore = useSongsStore();
+const { songs } = storeToRefs(songsStore);
+
+onMounted(() => {
+  songsStore.fetchAll();
+});
 </script>
 <template>
   <div class="bg-[#9C41EF]">
@@ -80,12 +78,8 @@ const {
     </div>
     <!-- songs -->
     <div class="container grid lg:grid-cols-3 gap-4 mx-auto">
-      <!-- pending & error status -->
-      <div class="col-span-3" v-if="pending">Loading...</div>
-      <div class="col-span-3" v-else-if="error">Failed to load songs</div>
       <!-- succeed to fetch the song  -->
       <div
-        v-else
         class="songs rounded-xl p-4 text-center bg-gray-900"
         v-for="song in songs"
         :key="song._id"
