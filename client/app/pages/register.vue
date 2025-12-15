@@ -1,9 +1,58 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import { useAuthStore } from "../../stores/auth";
+const auth = useAuthStore();
+const isLoading = ref(false);
+const errorMessage = ref("");
+const successMessage = ref("");
+
+const form = ref({
+  username: "",
+  email: "",
+  password: "",
+});
+
+const handleSubmit = async () => {
+  isLoading.value = true;
+  try {
+    await auth.register(
+      form.value.username,
+      form.value.email,
+      form.value.password
+    );
+    // show success message
+    successMessage.value = "Regestired successfully! Redirecting...";
+    // wait 2 sec then go home
+    setTimeout(async () => {
+      await navigateTo("/");
+    }, 2000);
+  } catch (error) {
+    errorMessage.value = (error as any).data.message;
+  } finally {
+    isLoading.value = false;
+  }
+};
+</script>
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-500 to-purple-600 p-4">
+  <div
+    class="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-500 to-purple-600 p-4"
+  >
     <div class="w-full max-w-md rounded-lg bg-white p-8 shadow-2xl">
       <h1 class="mb-6 text-center text-3xl font-bold text-gray-800">
         Create Account
       </h1>
+      <div
+        v-if="errorMessage"
+        class="mb-4 rounded bg-red-100 p-3 text-center text-red-700 border border-red-400"
+      >
+        {{ errorMessage }}
+      </div>
+      <div
+        v-if="successMessage"
+        class="mb-4 rounded bg-green-100 p-3 text-center text-green-700 border border-green-400"
+      >
+        {{ successMessage }}
+      </div>
       <form @submit.prevent="handleSubmit">
         <div class="mb-4">
           <label for="username" class="mb-2 block font-semibold text-gray-800">
@@ -52,42 +101,25 @@
           />
         </div>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           :disabled="isLoading"
           :class="{ 'opacity-70': isLoading }"
           class="mt-2 w-full rounded bg-purple-500 py-2 font-semibold text-white transition-colors hover:bg-purple-600 disabled:cursor-not-allowed"
         >
-          {{ isLoading ? 'Creating...' : 'Create Account' }}
+          {{ isLoading ? "Creating..." : "Create Account" }}
         </button>
       </form>
 
       <p class="mt-4 text-center text-sm text-gray-600">
         You have an account?
-        <NuxtLink to="/login" class="text-green-500 transition-colors hover:text-green-600">
+        <NuxtLink
+          to="/login"
+          class="text-green-500 transition-colors hover:text-green-600"
+        >
           Login here.
         </NuxtLink>
       </p>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const form = ref({
-  username: '',
-  email: '',
-  password: ''
-})
-
-const isLoading = ref(false)
-
-const handleSubmit = async () => {
-  isLoading.value = true
-  try {
-  } finally {
-    isLoading.value = false
-  }
-}
-</script>

@@ -5,9 +5,29 @@ export default defineNuxtConfig({
         compatibilityVersion: 4
     },
     modules: [
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+        '@pinia/nuxt'
     ],
     css: [
         '~/assets/css/tailwind.css'
-    ]
+    ],
+    app: {
+        head: {
+            link: [
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    href: '/app/assets/imgs/log.png'
+                }
+            ]
+        }
+    },
+    runtimeConfig: {
+        public: {
+            apiBase: process.env.API_BASE_URL
+        }
+    },
+    routeRules: {
+        '/api/**': { proxy: 'https://spacesongsbackend.onrender.com/api/**' }
+    }
 })
