@@ -3,42 +3,44 @@ import { useAuthStore } from "../../stores/auth";
 const auth = useAuthStore();
 </script>
 <template>
-  <header class="sticky top-0 z-[9999] bg-blue-900 py-1 shadow-lg">
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-8 px-8">
-      <div>
-        <div class="flex items-center justify-center">
-          <img src="../assets/imgs/log.png" alt="Logo" class="h-16" />
-        </div>
+  <!-- Header with dark-gray background and sticky position -->
+  <header class="sticky top-0 z-[9999] bg-dark-gray py-4 shadow-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <!-- Logo/Brand Section -->
+      <div class="flex items-center space-x-2">
+        <img src="../assets/imgs/log.png" alt="Spacetoon Logo" class="h-10" />
+        <span class="text-xl font-bold text-white tracking-wider">SPACETOON</span>
       </div>
 
-      <nav class="flex flex-1 items-center justify-center gap-8">
+      <!-- Navigation Links -->
+      <nav class="flex items-center space-x-6">
         <NuxtLink
           to="/"
-          class="rounded px-4 py-2 font-medium text-white transition-all hover:bg-green-500/20 hover:text-green-400"
+          class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Home</NuxtLink
         >
         <NuxtLink
           to="/panel"
           v-if="auth.user"
-          class="rounded px-4 py-2 font-medium text-white transition-all hover:bg-green-500/20 hover:text-green-400"
+          class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Panel</NuxtLink
         >
         <NuxtLink
           to="/login"
           v-if="!auth.user"
-          class="rounded px-4 py-2 font-medium text-white transition-all hover:bg-green-500/20 hover:text-green-400"
+          class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Login</NuxtLink
         >
         <NuxtLink
           to="/register"
           v-if="!auth.user"
-          class="rounded px-4 py-2 font-medium text-white transition-all hover:bg-green-500/20 hover:text-green-400"
+          class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Register</NuxtLink
         >
         <button
           v-if="auth.user"
           @click="auth.logout()"
-          class="rounded px-4 py-2 font-medium text-white transition-all hover:bg-red-500/20 hover:text-red-400"
+          class="px-3 py-1.5 rounded-lg font-medium text-white bg-vibrant-purple transition-colors duration-200 hover:bg-vibrant-purple/80"
         >
           Logout
         </button>

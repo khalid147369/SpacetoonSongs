@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  useHead({
+  title: "Create Account",
+});
 import { ref } from "vue";
 import { useAuthStore } from "../../stores/auth";
 const auth = useAuthStore();

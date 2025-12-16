@@ -1,4 +1,7 @@
 <script setup lang="ts">
+useHead({
+  title: "Login",
+});
 import { useAuthStore } from "../../stores/auth";
 import { ref } from "vue";
 const auth = useAuthStore();

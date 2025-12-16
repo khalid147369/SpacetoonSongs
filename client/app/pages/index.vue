@@ -1,7 +1,11 @@
 <script setup lang="ts">
+  useHead({
+  title: "Spacetoon",
+});
 import { useSongsStore } from "../../stores/songs";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import logo from '../assets/imgs/log.png'
 
 const songsStore = useSongsStore();
 const { songs } = storeToRefs(songsStore);
@@ -11,26 +15,47 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="bg-[#9C41EF]">
-    <div class="heroSection">
-      <ImageSlider />
-    </div>
-    <div class="py-6">
-      <div class="divider mx-auto my-10 flex items-center gap-8 px-8">
-        <hr class="flex-1 border-t-4 border-white-900" />
-        <h2 class="whitespace-nowrap text-4xl font-bold text-white">
-          Our Heros
-        </h2>
-        <hr class="flex-1 border-t-4 border-white-900" />
+  <!-- Main container with dark theme -->
+  <div class="min-h-screen bg-deep-black text-white">
+    <!-- Hero Section with Image Slider -->
+<template>
+  <section class="relative h-screen w-full overflow-hidden">
+    <!-- Video background -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      class="absolute inset-0 h-full w-full object-cover"
+    >
+      <source src="/videos/ita.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Overlay -->
+    <div class="relative z-10 flex h-full items-center bg-black/20 px-6">
+      <div class="max-w-xl font-serif text-white">
+        You are Welcome
       </div>
+    </div>
+  </section>
+</template>
+
+    <!-- Our Heros Section -->
+    <div class="py-6">
+      <!-- Section Title -->
+      <h2 class="text-3xl font-bold text-white text-center mb-8">Our Heros</h2>
+      
+      <!-- Heros Grid -->
       <div
-        class="ourHeros cards mx-8 mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-8"
+        class="ourHeros cursor-pointer cards mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 px-4"
       >
+        <!-- Hero Card 1 -->
         <div
-          class="w-full max-w-sm rounded-lg border border-gray-700 bg-[#1f2937] shadow"
+          class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
           <img
-            class="w-full rounded-t-lg"
+            class="w-full rounded-t-lg object-cover"
             src="../assets/imgs/lu.png"
             alt="Luffy"
           />
@@ -40,11 +65,12 @@ onMounted(() => {
             </h1>
           </div>
         </div>
+        <!-- Hero Card 2 -->
         <div
-          class="w-full max-w-sm rounded-lg border border-gray-700 bg-[#1f2937] shadow"
+          class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
           <img
-            class="w-full rounded-t-lg"
+            class="w-full rounded-t-lg object-cover"
             src="../assets/imgs/na.png"
             alt="Naruto"
           />
@@ -54,11 +80,12 @@ onMounted(() => {
             </h1>
           </div>
         </div>
+        <!-- Hero Card 3 -->
         <div
-          class="w-full max-w-sm rounded-lg border border-gray-700 bg-[#1f2937] shadow"
+          class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
           <img
-            class="w-full rounded-t-lg"
+            class="w-full rounded-t-lg object-cover"
             src="../assets/imgs/go.png"
             alt="Goku"
           />
@@ -70,17 +97,15 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <!-- divider -->
-    <div class="divider mx-auto my-16 flex items-center gap-8 px-8">
-      <hr class="flex-1 border-t-4 border-white-900" />
-      <h2 class="whitespace-nowrap text-4xl font-bold text-white">Songs</h2>
-      <hr class="flex-1 border-t-4 border-white-900" />
-    </div>
-    <!-- songs -->
-    <div class="container grid lg:grid-cols-3 gap-4 mx-auto">
-      <!-- succeed to fetch the song  -->
+
+    <!-- Songs Section Title -->
+    <h2 class="text-3xl font-bold text-white text-center my-16">Songs</h2>
+    
+    <!-- Songs Grid -->
+    <div class="container cursor-pointer mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-16">
+      <!-- Song Card (v-for loop) -->
       <div
-        class="songs rounded-xl p-4 text-center bg-gray-900"
+        class="songs rounded-xl p-4 text-center bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02] border-2 border-transparent hover:border-medium-gray"
         v-for="song in songs"
         :key="song._id"
       >
@@ -89,6 +114,7 @@ onMounted(() => {
           <img
             class="h-48 mb-4 rounded-lg w-full object-cover"
             :src="song.image"
+            @error="($event.target as HTMLImageElement).src = logo"
             :alt="song.title"
           />
           <CustomAudioPlayer class="w-full mb-4 rounded-lg" :src="song.audio" />

@@ -1,3 +1,67 @@
+<script setup lang="ts">
+import { ref, reactive } from 'vue';
+
+useHead({
+  title: "Panel | Add New Song",
+});
+
+const form = reactive({
+  title: '',
+});
+
+const imageInput = ref<HTMLInputElement | null>(null);
+const audioInput = ref<HTMLInputElement | null>(null);
+const imagePreview = ref<string | null>(null);
+const audioPreview = ref<string | null>(null);
+const audioFile = ref<File | null>(null);
+
+const isLoading = ref(false);
+const message = ref('');
+const messageType = ref('');
+
+const handleImageChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    const file = target.files[0];
+    imagePreview.value = URL.createObjectURL(file);
+  }
+};
+
+const handleAudioChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    const file = target.files[0];
+    audioFile.value = file;
+    audioPreview.value = URL.createObjectURL(file);
+  }
+};
+
+const removeImage = () => {
+  if (imageInput.value) {
+    imageInput.value.value = '';
+  }
+  imagePreview.value = null;
+};
+
+const removeAudio = () => {
+  if (audioInput.value) {
+    audioInput.value.value = '';
+  }
+  audioFile.value = null;
+  audioPreview.value = null;
+};
+
+const handleSubmit = async () => {
+  // Placeholder for submission logic
+  console.log('Submitting:', {
+    title: form.title,
+    image: imageInput.value?.files?.[0],
+    audio: audioFile.value,
+  });
+  // Here you would typically send the data to a server
+};
+</script>
+
 <template>
   <div class="min-h-screen bg-gradient-to-br from-purple-500 to-purple-600 px-4 py-8">
     <section class="mx-auto max-w-2xl rounded-lg bg-white p-8 shadow-2xl">
@@ -98,101 +162,3 @@
     </section>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const form = ref({
-  title: '',
-})
-
-const imageFile = ref<File | null>(null)
-const imagePreview = ref('')
-const audioFile = ref<File | null>(null)
-const audioPreview = ref('')
-const imageInput = ref<HTMLInputElement | null>(null)
-const audioInput = ref<HTMLInputElement | null>(null)
-const message = ref('')
-const messageType = ref('')
-const isLoading = ref(false)
-
-const handleImageChange = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  const file = target.files?.[0]
-
-  if (file) {
-    imageFile.value = file
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      imagePreview.value = e.target?.result as string
-    }
-    reader.readAsDataURL(file)
-  }
-}
-
-const handleAudioChange = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  const file = target.files?.[0]
-
-  if (file) {
-    audioFile.value = file
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      audioPreview.value = e.target?.result as string
-    }
-    reader.readAsDataURL(file)
-  }
-}
-
-const removeImage = () => {
-  imageFile.value = null
-  imagePreview.value = ''
-  if (imageInput.value) imageInput.value.value = ''
-}
-
-const removeAudio = () => {
-  audioFile.value = null
-  audioPreview.value = ''
-  if (audioInput.value) audioInput.value.value = ''
-}
-
-const handleSubmit = async () => {
-  message.value = ''
-  messageType.value = ''
-
-  const title = form.value.title.trim()
-  if (!title) {
-    message.value = 'Please add a title.'
-    messageType.value = 'error'
-    return
-  }
-
-  isLoading.value = true
-
-  try {
-    const formData = new FormData()
-    formData.append('title', title)
-
-    if (imageFile.value) {
-      formData.append('image', imageFile.value)
-    }
-
-    if (audioFile.value) {
-      formData.append('audio', audioFile.value)
-    }
-
-    message.value = 'Song added successfully!'
-    messageType.value = 'success'
-
-    setTimeout(() => {
-      message.value = ''
-    }, 3000)
-  } catch (error) {
-    message.value = 'Failed to add song.'
-    messageType.value = 'error'
-    console.error('Error adding song:', error)
-  } finally {
-    isLoading.value = false
-  }
-}
-</script>

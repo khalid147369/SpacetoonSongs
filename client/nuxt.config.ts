@@ -17,7 +17,7 @@ export default defineNuxtConfig({
                 {
                     rel: 'icon',
                     type: 'image/png',
-                    href: '/app/assets/imgs/log.png'
+                    href: '/favicon.png'
                 }
             ]
         }
