@@ -18,7 +18,6 @@ onMounted(() => {
   <!-- Main container with dark theme -->
   <div class="min-h-screen bg-deep-black text-white">
     <!-- Hero Section with Image Slider -->
-<template>
   <section class="relative h-screen w-full overflow-hidden">
     <!-- Video background -->
     <video
@@ -26,20 +25,19 @@ onMounted(() => {
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="auto"
       class="absolute inset-0 h-full w-full object-cover"
     >
       <source src="/videos/ita.mp4" type="video/mp4" />
     </video>
 
     <!-- Overlay -->
-    <div class="relative z-10 flex h-full items-center bg-black/20 px-6">
+    <div class="relative z-10 flex h-full items-center bg-black/10 px-6">
       <div class="max-w-xl font-serif text-white">
         You are Welcome
       </div>
     </div>
   </section>
-</template>
 
     <!-- Our Heros Section -->
     <div class="py-6">
