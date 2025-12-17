@@ -40,7 +40,7 @@ const auth = useAuthStore();
         <button
           v-if="auth.user"
           @click="auth.logout()"
-          class="px-3 py-1.5 rounded-lg font-medium text-white bg-vibrant-purple transition-colors duration-200 hover:bg-vibrant-purple/80"
+          class="px-3 py-1.5 rounded-lg font-medium text-white bg-vibrant-purple transition-colors duration-200 hover:bg-danger/80"
         >
           Logout
         </button>
