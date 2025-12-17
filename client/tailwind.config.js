@@ -14,6 +14,7 @@ module.exports = {
         'medium-gray': '#A0A0A0',
         'vibrant-purple': '#7C4DFF',
         'light-gray-border': '#333333',
+        'danger': '#FF0000',
       },
     },
   },

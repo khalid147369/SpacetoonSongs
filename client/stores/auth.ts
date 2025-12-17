@@ -11,8 +11,8 @@ interface RegisterResponse {
     token: string;
 }
 export const useAuthStore = defineStore('auth', () => {
-    const user = ref(null);
-    const token = ref('');
+    const user = useCookie<any>('auth_user');
+    const token = useCookie('auth_token');
     // register function to create a new user
     const register = async (name: string, email: string, password: string) => {
         try {
