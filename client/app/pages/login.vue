@@ -30,7 +30,7 @@ const handleSubmit = async () => {
 </script>
 <template>
   <div
-    class="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-500 to-purple-600 p-4"
+    class="flex min-h-screen items-center justify-center bg-deep-black p-4"
   >
     <div class="w-full max-w-md rounded-lg bg-white p-8 shadow-2xl">
       <h1 class="mb-6 text-center text-3xl font-bold text-gray-800">Login</h1>
@@ -81,7 +81,7 @@ const handleSubmit = async () => {
           type="submit"
           :disabled="isLoading"
           :class="{ 'opacity-70': isLoading }"
-          class="mt-2 w-full rounded bg-purple-500 py-2 font-semibold text-white transition-colors hover:bg-purple-600 disabled:cursor-not-allowed"
+          class="mt-2 w-full rounded bg-dark-gray py-2 font-semibold text-white transition-colors hover:bg-purple-600 disabled:cursor-not-allowed"
         >
           {{ isLoading ? "Login..." : "Login" }}
         </button>

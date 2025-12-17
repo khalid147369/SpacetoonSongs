@@ -1,11 +1,13 @@
 <script setup lang="ts">
-  useHead({
+import ImageSlider from "../components/ImageSlider.vue";
+
+useHead({
   title: "Spacetoon",
 });
 import { useSongsStore } from "../../stores/songs";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import logo from '../assets/imgs/log.png'
+import logo from "../assets/imgs/log.png";
 
 const songsStore = useSongsStore();
 const { songs } = storeToRefs(songsStore);
@@ -18,35 +20,18 @@ onMounted(() => {
   <!-- Main container with dark theme -->
   <div class="min-h-screen bg-deep-black text-white">
     <!-- Hero Section with Image Slider -->
-  <section class="relative h-screen w-full overflow-hidden">
-    <!-- Video background -->
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      class="absolute inset-0 h-full w-full object-cover"
-    >
-      <source src="/videos/ita.mp4" type="video/mp4" />
-    </video>
-
-    <!-- Overlay -->
-    <div class="relative z-10 flex h-full items-center bg-black/10 px-6">
-      <div class="max-w-xl font-serif text-white">
-        You are Welcome
-      </div>
-    </div>
-  </section>
+    <section class="relative h-auto w-full overflow-hidden">
+      <ImageSlider />
+    </section>
 
     <!-- Our Heros Section -->
     <div class="py-6">
       <!-- Section Title -->
       <h2 class="text-3xl font-bold text-white text-center mb-8">Our Heros</h2>
-      
+
       <!-- Heros Grid -->
       <div
-        class="ourHeros cursor-pointer cards mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 px-4"
+        class="ourHeros cursor-pointer cards mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6 px-4"
       >
         <!-- Hero Card 1 -->
         <div
@@ -98,9 +83,11 @@ onMounted(() => {
 
     <!-- Songs Section Title -->
     <h2 class="text-3xl font-bold text-white text-center my-16">Songs</h2>
-    
+
     <!-- Songs Grid -->
-    <div class="container cursor-pointer mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-16">
+    <div
+      class="container cursor-pointer mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-16"
+    >
       <!-- Song Card (v-for loop) -->
       <div
         class="songs rounded-xl p-4 text-center bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02] border-2 border-transparent hover:border-medium-gray"

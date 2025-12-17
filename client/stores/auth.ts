@@ -11,12 +11,12 @@ interface RegisterResponse {
     token: string;
 }
 export const useAuthStore = defineStore('auth', () => {
-    const user = ref(null);
-    const token = ref('');
+    const user = useCookie<any>('auth_user');
+    const token = useCookie('auth_token');
+    const config = useRuntimeConfig();
     // register function to create a new user
     const register = async (name: string, email: string, password: string) => {
         try {
-            const config = useRuntimeConfig();
             const data = await $fetch<RegisterResponse>(`${config.public.apiBase}/users/register`, {
                 method: 'POST',
                 body: { username: name, email, password }
@@ -31,7 +31,6 @@ export const useAuthStore = defineStore('auth', () => {
     // login function to authenticate user
     const login = async (email: string, password: string) => {
         try {
-            const config = useRuntimeConfig();
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/login`, {
                 method: 'POST',
                 body: { email, password }
