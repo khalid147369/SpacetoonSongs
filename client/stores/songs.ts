@@ -25,21 +25,15 @@ export const useSongsStore = defineStore('songs', {
 
   actions: {
     async fetchAll() {
+      const config = useRuntimeConfig();
       // Prevent duplicate fetches
       if (this.loading) return;
-      
+
       this.loading = true;
       this.error = null;
 
       try {
-        const response = await fetch('/api/songs');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        this.songs = data;
+        this.songs = await $fetch<Song[]>(`${config.public.apiBase}/api/songs`);
         this.fetched = true;
       } catch (error) {
         console.error('Failed to fetch songs:', error);
