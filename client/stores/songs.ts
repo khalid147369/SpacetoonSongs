@@ -33,7 +33,7 @@ export const useSongsStore = defineStore('songs', {
       this.error = null;
 
       try {
-        this.songs = await $fetch<Song[]>(`${config.public.apiBase}/api/songs`);
+        this.songs = await $fetch<Song[]>(`${config.public.apiBase}/songs`);
         this.fetched = true;
       } catch (error) {
         console.error('Failed to fetch songs:', error);
