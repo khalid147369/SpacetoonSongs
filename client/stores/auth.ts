@@ -1,6 +1,6 @@
 // plucked defineStore from pinia to create our auth store
 import { defineStore } from 'pinia'
-import { ref } from "vue";
+
 // defineStore takes two arguements (unique name, returned function)
 interface LoginResponse {
     user: any;
@@ -11,8 +11,12 @@ interface RegisterResponse {
     token: string;
 }
 export const useAuthStore = defineStore('auth', () => {
-    const user = useCookie<any>('auth_user');
-    const token = useCookie('auth_token');
+    const cookieOptions = {
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+        path: '/',
+    }
+    const user = useCookie<any>('auth_user', cookieOptions);
+    const token = useCookie('auth_token', cookieOptions);
     const config = useRuntimeConfig();
     // register function to create a new user
     const register = async (name: string, email: string, password: string) => {
