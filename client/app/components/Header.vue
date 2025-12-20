@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { useAuthStore } from "../../stores/auth";
-import { ref } from "vue";
-
+import { storeToRefs } from "pinia";
+import { ref, onMounted } from "vue";
 const auth = useAuthStore();
-const isMobileMenuOpen = ref(false);
+// Use storeToRefs to keep the 'user' reactive
+const { user } = storeToRefs(auth);
 
+// Debugging: Let's see what the app actually sees when it loads
+onMounted(() => {
+  console.log("Navbar mounted. Current User:", user.value);
+});
+// mobile
+const isMobileMenuOpen = ref(false);
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
@@ -25,10 +32,7 @@ const toggleMobileMenu = () => {
 
       <!-- Hamburger Menu Button (visible on small screens) -->
       <div class="md:hidden">
-        <button
-          @click="toggleMobileMenu"
-          class="text-white focus:outline-none"
-        >
+        <button @click="toggleMobileMenu" class="text-white focus:outline-none">
           <svg
             class="h-6 w-6"
             fill="none"
@@ -55,24 +59,24 @@ const toggleMobileMenu = () => {
         >
         <NuxtLink
           to="/panel"
-          v-if="auth.user"
+          v-if="user"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Panel</NuxtLink
         >
         <NuxtLink
           to="/login"
-          v-if="!auth.user"
+          v-if="!user"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Login</NuxtLink
         >
         <NuxtLink
           to="/register"
-          v-if="!auth.user"
+          v-if="!user"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Register</NuxtLink
         >
         <button
-          v-if="auth.user"
+          v-if="user"
           @click="auth.logout()"
           class="px-3 py-1.5 rounded-lg font-medium text-white bg-vibrant-purple transition-colors duration-200 hover:bg-danger/80"
         >
@@ -92,27 +96,27 @@ const toggleMobileMenu = () => {
         >
         <NuxtLink
           to="/panel"
-          v-if="auth.user"
+          v-if="user"
           @click="toggleMobileMenu"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Panel</NuxtLink
         >
         <NuxtLink
           to="/login"
-          v-if="!auth.user"
+          v-if="user"
           @click="toggleMobileMenu"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Login</NuxtLink
         >
         <NuxtLink
           to="/register"
-          v-if="!auth.user"
+          v-if="user"
           @click="toggleMobileMenu"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Register</NuxtLink
         >
         <button
-          v-if="auth.user"
+          v-if="user"
           @click="
             auth.logout();
             toggleMobileMenu();
