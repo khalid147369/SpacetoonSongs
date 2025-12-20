@@ -4,11 +4,11 @@ import { defineStore } from 'pinia'
 // defineStore takes two arguements (unique name, returned function)
 interface LoginResponse {
     user: any;
-    token: string;
+    accessToken: string;
 }
 interface RegisterResponse {
     user: any;
-    token: string;
+    accessToken: string;
 }
 export const useAuthStore = defineStore('auth', () => {
     const cookieOptions = {
@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth', () => {
         path: '/',
     }
     const user = useCookie<any>('auth_user', cookieOptions);
-    const token = useCookie('auth_token', cookieOptions);
+    const accessToken = useCookie('auth_token', cookieOptions);
     const config = useRuntimeConfig();
     // register function to create a new user
     const register = async (name: string, email: string, password: string) => {
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth', () => {
                 body: { username: name, email, password }
             });
             user.value = data.user;
-            token.value = data.token;
+            accessToken.value = data.accessToken;
         } catch (error) {
             console.error('Registration failed:', error);
             throw error;
@@ -40,7 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
                 body: { email, password }
             })
             user.value = data.user;
-            token.value = data.token;
+            accessToken.value = data.accessToken;
         } catch (error) {
             console.error('Login failed:', error);
             throw error;
@@ -54,10 +54,10 @@ export const useAuthStore = defineStore('auth', () => {
         } catch (error) {
             console.error('Logout error:', error);
         }
-        
+
         // 2. Clear local state
         user.value = null;
-        token.value = '';
+        accessToken.value = '';
         navigateTo('/login');
     };
 
@@ -68,12 +68,12 @@ export const useAuthStore = defineStore('auth', () => {
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
                 method: 'POST'
             });
-            token.value = data.token;
+            accessToken.value = data.accessToken;
         } catch (error) {
             logout();
         }
     };
 
 
-    return { user, token, login, register, logout, refresh };
+    return { user, accessToken, login, register, logout, refresh };
 })
