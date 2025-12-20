@@ -1,18 +1,12 @@
 <script setup lang="ts">
-import ImageSlider from "../components/ImageSlider.vue";
-
 useHead({
   title: "Spacetoon",
 });
+import ImageSlider from "../components/ImageSlider.vue";
 import { useSongsStore } from "../../stores/songs";
-import { useAuthStore } from "../../stores/auth";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import logo from "../assets/imgs/log.png";
-
-const authStore = useAuthStore();
-console.log('Is user logged in?', authStore.user);
-console.log('Token exists?', authStore.token);
 
 const songsStore = useSongsStore();
 const { songs } = storeToRefs(songsStore);

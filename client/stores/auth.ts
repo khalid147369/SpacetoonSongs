@@ -45,13 +45,35 @@ export const useAuthStore = defineStore('auth', () => {
             console.error('Login failed:', error);
             throw error;
         }
-    }
-    // Logout function to clear user and token
-    const logout = () => {
+    };
+    // logout function to clear user data
+    const logout = async () => {
+        try {
+            // 1. Tell the backend to clear the secure cookie
+            await $fetch(`${config.public.apiBase}/users/logout`, { method: 'POST' });
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+        
+        // 2. Clear local state
         user.value = null;
         token.value = '';
-        navigateTo('/login')
+        navigateTo('/login');
     };
 
-    return { user, token, login, register, logout };
+    // refresh token 
+    const refresh = async () => {
+        try {
+            // Updated to the specific URL you provided
+            const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
+                method: 'POST'
+            });
+            token.value = data.token;
+        } catch (error) {
+            logout();
+        }
+    };
+
+
+    return { user, token, login, register, logout, refresh };
 })
