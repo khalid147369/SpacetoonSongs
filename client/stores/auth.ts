@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', () => {
     const user = useCookie<any>('auth_user', cookieOptions);
     const accessToken = useCookie('auth_token', cookieOptions);
     const config = useRuntimeConfig();
-    // register function to create a new user
+    // register function
     const register = async (name: string, email: string, password: string) => {
         try {
             const data = await $fetch<RegisterResponse>(`${config.public.apiBase}/users/register`, {
@@ -28,11 +28,10 @@ export const useAuthStore = defineStore('auth', () => {
             user.value = data.user;
             accessToken.value = data.accessToken;
         } catch (error) {
-            console.error('Registration failed:', error);
             throw error;
         }
     };
-    // login function to authenticate user
+    // login function
     const login = async (email: string, password: string) => {
         try {
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/login`, {
@@ -42,7 +41,6 @@ export const useAuthStore = defineStore('auth', () => {
             user.value = data.user;
             accessToken.value = data.accessToken;
         } catch (error) {
-            console.error('Login failed:', error);
             throw error;
         }
     };
@@ -50,10 +48,15 @@ export const useAuthStore = defineStore('auth', () => {
     const logout = async () => {
         console.log('Logout function called.');
         try {
-            // 1. Tell the backend to clear the secure cookie
-            await $fetch(`${config.public.apiBase}/users/logout`, { method: 'POST' });
-        } catch (error) {
-            console.error('Logout API call failed:', error);
+            // 1. Tell the backend to invalidate the token
+            await $fetch(`${config.public.apiBase}/users/logout`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken.value}`
+                }
+            });
+        } catch (error: any) {
+            throw error;
         }
 
         // 2. Clear local state
@@ -66,7 +69,6 @@ export const useAuthStore = defineStore('auth', () => {
     const refresh = async () => {
         console.log('Attempting to refresh token...');
         try {
-            // Updated to the specific URL you provided
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
                 method: 'POST'
             });
@@ -76,7 +78,6 @@ export const useAuthStore = defineStore('auth', () => {
         } catch (error) {
             console.error('Token refresh failed:', error);
             logout();
-            // We throw the error so the middleware catch block knows it failed
             throw error;
         }
     };
