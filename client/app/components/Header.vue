@@ -14,6 +14,16 @@ onMounted(() => {
 const isMobileMenuOpen = ref(false);
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
+  if (typeof window !== 'undefined' && window.document) {
+    const body = document.body;
+    if (body) {
+      if (isMobileMenuOpen.value) {
+        body.classList.add('no-scroll');
+      } else {
+        body.classList.remove('no-scroll');
+      }
+    }
+  }
 };
 </script>
 <template>
@@ -103,14 +113,14 @@ const toggleMobileMenu = () => {
         >
         <NuxtLink
           to="/login"
-          v-if="user"
+          v-if="!user"
           @click="toggleMobileMenu"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Login</NuxtLink
         >
         <NuxtLink
           to="/register"
-          v-if="user"
+          v-if="!user"
           @click="toggleMobileMenu"
           class="text-white font-medium transition-colors duration-200 hover:text-vibrant-purple"
           >Register</NuxtLink
