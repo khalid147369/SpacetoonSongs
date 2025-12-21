@@ -48,11 +48,12 @@ export const useAuthStore = defineStore('auth', () => {
     };
     // logout function to clear user data
     const logout = async () => {
+        console.log('Logout function called.');
         try {
             // 1. Tell the backend to clear the secure cookie
             await $fetch(`${config.public.apiBase}/users/logout`, { method: 'POST' });
         } catch (error) {
-            console.error('Logout error:', error);
+            console.error('Logout API call failed:', error);
         }
 
         // 2. Clear local state
@@ -63,6 +64,7 @@ export const useAuthStore = defineStore('auth', () => {
 
     // refresh token 
     const refresh = async () => {
+        console.log('Attempting to refresh token...');
         try {
             // Updated to the specific URL you provided
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
@@ -70,8 +72,12 @@ export const useAuthStore = defineStore('auth', () => {
             });
             user.value = data.user;
             accessToken.value = data.accessToken;
+            console.log('Token refresh successful.');
         } catch (error) {
+            console.error('Token refresh failed:', error);
             logout();
+            // We throw the error so the middleware catch block knows it failed
+            throw error;
         }
     };
 
