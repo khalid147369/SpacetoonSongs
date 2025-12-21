@@ -68,6 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
                 method: 'POST'
             });
+            user.value = data.user;
             accessToken.value = data.accessToken;
         } catch (error) {
             logout();
