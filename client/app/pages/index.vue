@@ -4,7 +4,6 @@ useHead({
 });
 import ImageSlider from "../components/ImageSlider.vue";
 import { useSongsStore } from "../../stores/songs";
-import { useAuthStore } from "../../stores/auth";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import logo from "../assets/imgs/log.png";
@@ -12,11 +11,8 @@ import logo from "../assets/imgs/log.png";
 const songsStore = useSongsStore();
 const { songs } = storeToRefs(songsStore);
 
-const authStore = useAuthStore();
-
 onMounted(() => {
   songsStore.fetchAll();
-  authStore.refresh();
 });
 </script>
 <template>

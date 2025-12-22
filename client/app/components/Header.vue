@@ -8,7 +8,7 @@ const { user } = storeToRefs(auth);
 
 // Debugging: Let's see what the app actually sees when it loads
 onMounted(() => {
-  console.log("Navbar mounted. Current User:", user.value);
+  auth.refresh();
 });
 // mobile
 const isMobileMenuOpen = ref(false);
