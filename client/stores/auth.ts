@@ -10,10 +10,14 @@ interface RegisterResponse {
 }
 
 export const useAuthStore = defineStore('auth', () => {
+    // Production-ready cookie options
     const cookieOptions = {
         maxAge: 60 * 60 * 24 * 7, // 1 week
         path: '/',
+        sameSite: 'lax' as const, // Important for cross-site cookies
+        secure: process.env.NODE_ENV === 'production', // Only secure in production
     }
+    
     const user = useCookie<any>('auth_user', cookieOptions);
     const accessToken = useCookie('auth_token', cookieOptions);
     const config = useRuntimeConfig();
@@ -23,7 +27,8 @@ export const useAuthStore = defineStore('auth', () => {
         try {
             const data = await $fetch<RegisterResponse>(`${config.public.apiBase}/users/register`, {
                 method: 'POST',
-                body: { username: name, email, password }
+                body: { username: name, email, password },
+                credentials: 'include' // Important for cookies
             });
             user.value = data.user;
             accessToken.value = data.accessToken;
@@ -37,7 +42,8 @@ export const useAuthStore = defineStore('auth', () => {
         try {
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/login`, {
                 method: 'POST',
-                body: { email, password }
+                body: { email, password },
+                credentials: 'include' // Important for cookies
             })
             user.value = data.user;
             accessToken.value = data.accessToken;
@@ -61,11 +67,11 @@ export const useAuthStore = defineStore('auth', () => {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`
-                    }
+                    },
+                    credentials: 'include'
                 });
             } catch (error: any) {
                 console.error('Logout API call failed:', error);
-                // Don't throw - local logout is more important
             }
         }
         
@@ -81,8 +87,7 @@ export const useAuthStore = defineStore('auth', () => {
                 headers: {
                     'Authorization': `Bearer ${accessToken.value}`
                 },
-                // Ensure cookies are sent
-                credentials: 'include'
+                credentials: 'include' // Ensure cookies are sent
             });
             user.value = data.user;
             accessToken.value = data.accessToken;

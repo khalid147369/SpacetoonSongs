@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
     const { accessToken, user } = useAuthStore();
-    
+
     console.log('--- Auth Middleware Running ---');
     console.log('Navigating to:', to.path);
     console.log('Access token exists:', !!accessToken.value);
