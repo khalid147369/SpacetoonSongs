@@ -46,7 +46,6 @@ export const useAuthStore = defineStore('auth', () => {
     };
     // logout function to clear user data
     const logout = async () => {
-        console.log('Logout function called.');
         try {
             // 1. Tell the backend to invalidate the token
             await $fetch(`${config.public.apiBase}/users/logout`, {
@@ -67,7 +66,6 @@ export const useAuthStore = defineStore('auth', () => {
 
     // refresh token 
     const refresh = async () => {
-        console.log('Attempting to refresh token...');
         try {
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
                 method: 'POST'
