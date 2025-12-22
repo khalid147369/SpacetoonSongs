@@ -1,7 +1,5 @@
-// plucked defineStore from pinia to create our auth store
 import { defineStore } from 'pinia'
 
-// defineStore takes two arguements (unique name, returned function)
 interface LoginResponse {
     user: any;
     accessToken: string;
@@ -10,6 +8,7 @@ interface RegisterResponse {
     user: any;
     accessToken: string;
 }
+
 export const useAuthStore = defineStore('auth', () => {
     const cookieOptions = {
         maxAge: 60 * 60 * 24 * 7, // 1 week
@@ -18,6 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
     const user = useCookie<any>('auth_user', cookieOptions);
     const accessToken = useCookie('auth_token', cookieOptions);
     const config = useRuntimeConfig();
+    
     // register function
     const register = async (name: string, email: string, password: string) => {
         try {
@@ -31,6 +31,7 @@ export const useAuthStore = defineStore('auth', () => {
             throw error;
         }
     };
+    
     // login function
     const login = async (email: string, password: string) => {
         try {
@@ -44,42 +45,57 @@ export const useAuthStore = defineStore('auth', () => {
             throw error;
         }
     };
+    
     // logout function to clear user data
     const logout = async () => {
-        try {
-            // 1. Tell the backend to invalidate the token
-            await $fetch(`${config.public.apiBase}/users/logout`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${accessToken.value}`
-                }
-            });
-        } catch (error: any) {
-            throw error;
-        }
-
-        // 2. Clear local state
+        const token = accessToken.value;
+        
+        // Clear local state first
         user.value = null;
         accessToken.value = '';
-        navigateTo('/login');
+        
+        // Then try to tell backend (don't block on failure)
+        if (token) {
+            try {
+                await $fetch(`${config.public.apiBase}/users/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            } catch (error: any) {
+                console.error('Logout API call failed:', error);
+                // Don't throw - local logout is more important
+            }
+        }
+        
+        // Navigate to login
+        await navigateTo('/login');
     };
 
     // refresh token 
     const refresh = async () => {
         try {
             const data = await $fetch<LoginResponse>(`${config.public.apiBase}/users/refresh-token`, {
-                method: 'POST'
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken.value}`
+                },
+                // Ensure cookies are sent
+                credentials: 'include'
             });
             user.value = data.user;
             accessToken.value = data.accessToken;
             console.log('Token refresh successful.');
         } catch (error) {
             console.error('Token refresh failed:', error);
-            logout();
+            // Clear auth and redirect
+            user.value = null;
+            accessToken.value = '';
+            await navigateTo('/login');
             throw error;
         }
     };
-
 
     return { user, accessToken, login, register, logout, refresh };
 })
