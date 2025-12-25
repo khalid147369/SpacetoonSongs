@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useAuthStore } from "../../stores/auth";
-
 useHead({
   title: "Login",
 });
-
+import { useAuthStore } from "../../stores/auth";
+import { ref } from "vue";
 const auth = useAuthStore();
 const email = ref("");
 const password = ref("");
@@ -15,40 +13,25 @@ const successMessage = ref("");
 
 const handleSubmit = async () => {
   isLoading.value = true;
-  errorMessage.value = "";
-  successMessage.value = "";
-
   try {
-    console.log("=== LOGIN ATTEMPT ===");
-    console.log("Email:", email.value);
-
     await auth.login(email.value, password.value);
-
-    console.log("=== LOGIN SUCCESS ===");
-    console.log("Token after login:", !!auth.accessToken?.value);
-    console.log("User after login:", auth.user?.value);
-
     // show success message
     successMessage.value = "Login successful! Redirecting...";
-
-    // Wait a bit to ensure cookies are set
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    console.log("=== NAVIGATING TO HOME ===");
-    console.log("Token before navigation:", !!auth.accessToken?.value);
-
-    // Navigate to home
-    await navigateTo("/");
+    // wait 2 sec then go home
+    setTimeout(async () => {
+      await navigateTo("/");
+    }, 2000);
   } catch (error) {
-    console.error("=== LOGIN FAILED ===", error);
-    errorMessage.value = (error as any).data?.message || "Login failed";
+    errorMessage.value = (error as any).data.message;
   } finally {
     isLoading.value = false;
   }
 };
 </script>
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-deep-black p-4">
+  <div
+    class="flex min-h-screen items-center justify-center bg-deep-black p-4"
+  >
     <div class="w-full max-w-md rounded-lg bg-white p-8 shadow-2xl">
       <h1 class="mb-6 text-center text-3xl font-bold text-gray-800">Login</h1>
       <div
