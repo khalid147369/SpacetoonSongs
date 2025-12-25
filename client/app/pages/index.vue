@@ -6,7 +6,6 @@ import ImageSlider from "../components/ImageSlider.vue";
 import { useSongsStore } from "../../stores/songs";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import logo from "../assets/imgs/log.png";
 
 const songsStore = useSongsStore();
 const { songs } = storeToRefs(songsStore);
@@ -36,9 +35,10 @@ onMounted(() => {
         <div
           class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
-          <img
+          <NuxtImg
             class="w-full rounded-t-lg object-cover"
-            src="../assets/imgs/lu.png"
+            src="/imgs/lu.png"
+            format="webp"
             alt="Luffy"
           />
           <div class="p-5">
@@ -51,9 +51,10 @@ onMounted(() => {
         <div
           class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
-          <img
+          <NuxtImg
             class="w-full rounded-t-lg object-cover"
-            src="../assets/imgs/na.png"
+            src="/imgs/na.png"
+            format="webp"
             alt="Naruto"
           />
           <div class="p-5">
@@ -66,9 +67,10 @@ onMounted(() => {
         <div
           class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
-          <img
+          <NuxtImg
             class="w-full rounded-t-lg object-cover"
-            src="../assets/imgs/go.png"
+            src="/imgs/go.png"
+            format="webp"
             alt="Goku"
           />
           <div class="p-5">
@@ -95,10 +97,10 @@ onMounted(() => {
       >
         <div class="song">
           <h1 class="text-white mb-4 text-2xl font-bold">{{ song.title }}</h1>
-          <img
+          <NuxtImg
             class="h-48 mb-4 rounded-lg w-full object-cover"
             :src="song.image"
-            @error="($event.target as HTMLImageElement).src = logo"
+            format="webp"
             :alt="song.title"
           />
           <CustomAudioPlayer class="w-full mb-4 rounded-lg" :src="song.audio" />

@@ -34,7 +34,7 @@ const toggleMobileMenu = () => {
     >
       <!-- Logo/Brand Section -->
       <div class="flex items-center space-x-2">
-        <img src="../assets/imgs/log.png" alt="Spacetoon Logo" class="h-10" />
+        <NuxtImg src="/imgs/log.png" format="webp" alt="Spacetoon Logo" class="h-10" />
         <span class="text-xl font-bold text-white tracking-wider"
           >SPACETOON</span
         >
