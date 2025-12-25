@@ -14,14 +14,13 @@ export const useAuthStore = defineStore('auth', () => {
     const cookieOptions = {
         maxAge: 60 * 60 * 24 * 7, // 1 week
         path: '/',
-        sameSite: 'lax' as const, // Important for cross-site cookies
         secure: process.env.NODE_ENV === 'production', // Only secure in production
     }
-    
+
     const user = useCookie<any>('auth_user', cookieOptions);
     const accessToken = useCookie('auth_token', cookieOptions);
     const config = useRuntimeConfig();
-    
+
     // register function
     const register = async (name: string, email: string, password: string) => {
         try {
@@ -37,7 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
             throw error;
         }
     };
-    
+
     // login function
     const login = async (email: string, password: string) => {
         try {
@@ -53,15 +52,15 @@ export const useAuthStore = defineStore('auth', () => {
             throw error;
         }
     };
-    
+
     // logout function to clear user data
     const logout = async () => {
         const token = accessToken.value;
-        
+
         // Clear local state first
         user.value = null;
         accessToken.value = '';
-        
+
         // Then try to tell backend (don't block on failure)
         if (token) {
             try {
@@ -76,8 +75,6 @@ export const useAuthStore = defineStore('auth', () => {
                 console.error('Logout API call failed:', error);
             }
         }
-        
-        // Navigate to login
         await navigateTo('/login');
     };
 
@@ -89,7 +86,7 @@ export const useAuthStore = defineStore('auth', () => {
                 headers: {
                     'Authorization': `Bearer ${accessToken.value}`
                 },
-                credentials: 'include' // Ensure cookies are sent
+                credentials: 'include'
             });
             user.value = data.user;
             accessToken.value = data.accessToken;
@@ -99,7 +96,6 @@ export const useAuthStore = defineStore('auth', () => {
             // Clear auth and redirect
             user.value = null;
             accessToken.value = '';
-            await navigateTo('/');
             throw error;
         }
     };
