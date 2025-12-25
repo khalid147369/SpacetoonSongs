@@ -32,6 +32,7 @@ export const useAuthStore = defineStore('auth', () => {
             });
             user.value = data.user;
             accessToken.value = data.accessToken;
+            await navigateTo('/');
         } catch (error) {
             throw error;
         }
@@ -47,6 +48,7 @@ export const useAuthStore = defineStore('auth', () => {
             })
             user.value = data.user;
             accessToken.value = data.accessToken;
+            await navigateTo('/');
         } catch (error) {
             throw error;
         }
@@ -97,7 +99,7 @@ export const useAuthStore = defineStore('auth', () => {
             // Clear auth and redirect
             user.value = null;
             accessToken.value = '';
-            await navigateTo('/login');
+            await navigateTo('/');
             throw error;
         }
     };
