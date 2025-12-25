@@ -6,8 +6,12 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxtjs/tailwindcss',
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@nuxt/image'
     ],
+    image: {
+        domains: ['res.cloudinary.com']
+    },
     css: [
         '~/assets/css/tailwind.css'
     ],
@@ -16,7 +20,7 @@ export default defineNuxtConfig({
             link: [
                 {
                     rel: 'icon',
-                    type: 'image/png',
+                    type: 'image/webp',
                     href: '/favicon.png'
                 }
             ]

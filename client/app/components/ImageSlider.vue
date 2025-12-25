@@ -10,13 +10,13 @@
     class="my-swiper w-full h-550px"
   >
     <swiper-slide>
-      <img src="../assets/imgs/1.png" alt="1" class="slider-image" />
+      <NuxtImg src="/imgs/1.png" format="webp" alt="1" class="slider-image" />
     </swiper-slide>
     <swiper-slide>
-      <img src="../assets/imgs/2.png" alt="2" class="slider-image" />
+      <NuxtImg src="/imgs/2.png" format="webp" alt="2" class="slider-image" />
     </swiper-slide>
     <swiper-slide>
-      <img src="../assets/imgs/3.png" alt="3" class="slider-image" />
+      <NuxtImg src="/imgs/3.png" format="webp" alt="3" class="slider-image" />
     </swiper-slide>
   </swiper>
 </template>
