@@ -10,13 +10,40 @@
     class="my-swiper w-full h-550px"
   >
     <swiper-slide>
-      <NuxtImg src="/imgs/1.png" format="webp" alt="1" class="slider-image" />
+      <NuxtImg
+        src="/imgs/1.png"
+        format="webp"
+        width="1200"
+        height="600"
+        loading="eager"
+        fetchpriority="high"
+        alt="1"
+        class="slider-image"
+      />
     </swiper-slide>
     <swiper-slide>
-      <NuxtImg src="/imgs/2.png" format="webp" alt="2" class="slider-image" />
+      <NuxtImg
+        src="/imgs/2.png"
+        format="webp"
+        width="1200"
+        height="600"
+        loading="eager"
+        fetchpriority="high"
+        alt="2"
+        class="slider-image"
+      />
     </swiper-slide>
     <swiper-slide>
-      <NuxtImg src="/imgs/3.png" format="webp" alt="3" class="slider-image" />
+      <NuxtImg
+        src="/imgs/3.png"
+        format="webp"
+        width="1200"
+        height="600"
+        loading="eager"
+        fetchpriority="high"
+        alt="3"
+        class="slider-image"
+      />
     </swiper-slide>
   </swiper>
 </template>

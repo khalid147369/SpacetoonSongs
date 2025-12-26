@@ -10,7 +10,8 @@ export default defineNuxtConfig({
         '@nuxt/image'
     ],
     image: {
-        domains: ['res.cloudinary.com']
+        domains: ['res.cloudinary.com'],
+        format: ['avif', 'webp', 'png', 'jpeg'],
     },
     css: [
         '~/assets/css/tailwind.css'
@@ -20,9 +21,34 @@ export default defineNuxtConfig({
             link: [
                 {
                     rel: 'icon',
-                    type: 'image/webp',
-                    href: '/favicon.png'
+                    type: 'image/png',
+                    sizes: '16x16',
+                    href: '/favicon-16.png'
+                },
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '32x32',
+                    href: '/favicon-32.png'
+                },
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '48x48',
+                    href: '/favicon-48.png'
+                },
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '96x96',
+                    href: '/favicon-96.png'
+                },
+                {
+                    rel: 'apple-touch-icon',
+                    sizes: '180x180',
+                    href: '/apple-touch-icon.png'
                 }
+
             ]
         }
     },

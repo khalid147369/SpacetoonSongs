@@ -14,13 +14,13 @@ onMounted(() => {
 const isMobileMenuOpen = ref(false);
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
-  if (typeof window !== 'undefined' && window.document) {
+  if (typeof window !== "undefined" && window.document) {
     const body = document.body;
     if (body) {
       if (isMobileMenuOpen.value) {
-        body.classList.add('no-scroll');
+        body.classList.add("no-scroll");
       } else {
-        body.classList.remove('no-scroll');
+        body.classList.remove("no-scroll");
       }
     }
   }
@@ -34,7 +34,13 @@ const toggleMobileMenu = () => {
     >
       <!-- Logo/Brand Section -->
       <div class="flex items-center space-x-2">
-        <NuxtImg src="/imgs/log.png" format="webp" alt="Spacetoon Logo" class="h-10" />
+        <NuxtImg
+          src="/imgs/log.png"
+          format="webp"
+          decoding="async"
+          alt="Spacetoon Logo"
+          class="h-10"
+        />
         <span class="text-xl font-bold text-white tracking-wider"
           >SPACETOON</span
         >
