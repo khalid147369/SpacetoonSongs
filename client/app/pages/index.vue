@@ -38,7 +38,12 @@ onMounted(() => {
           <NuxtImg
             class="w-full rounded-t-lg object-cover"
             src="/imgs/lu.png"
+            width="320"
+            height="300"
+            sizes="(max-width: 640px) 100vw, 320px"
             format="webp"
+            loading="lazy"
+            decoding="async"
             alt="Luffy"
           />
           <div class="p-5">
@@ -54,7 +59,12 @@ onMounted(() => {
           <NuxtImg
             class="w-full rounded-t-lg object-cover"
             src="/imgs/na.png"
+            width="320"
+            height="300"
+            sizes="(max-width: 640px) 100vw, 320px"
             format="webp"
+            loading="lazy"
+            decoding="async"
             alt="Naruto"
           />
           <div class="p-5">
@@ -70,7 +80,12 @@ onMounted(() => {
           <NuxtImg
             class="w-full rounded-t-lg object-cover"
             src="/imgs/go.png"
+            width="320"
+            height="300"
+            sizes="(max-width: 640px) 100vw, 320px"
             format="webp"
+            loading="lazy"
+            decoding="async"
             alt="Goku"
           />
           <div class="p-5">
@@ -100,8 +115,12 @@ onMounted(() => {
           <NuxtImg
             class="h-48 mb-4 rounded-lg w-full object-cover"
             :src="song.image"
-            format="webp"
             :alt="song.title"
+            format="webp"
+            sizes="(max-width: 640px) 100vw,
+                  (max-width: 1024px) 50vw,320px"
+            loading="lazy"
+            decoding="async"
           />
           <CustomAudioPlayer class="w-full mb-4 rounded-lg" :src="song.audio" />
         </div>
