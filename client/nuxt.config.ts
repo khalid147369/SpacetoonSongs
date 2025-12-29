@@ -11,7 +11,9 @@ export default defineNuxtConfig({
     ],
     image: {
         provider: 'ipx',
-        domains: ['res.cloudinary.com'],
+        cloudinary: {
+        baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
+    },
         format: ['avif', 'webp', 'png', 'jpeg'],
     },
     css: [
