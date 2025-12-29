@@ -113,6 +113,7 @@ onMounted(() => {
         <div class="song">
           <h1 class="text-white mb-4 text-2xl font-bold">{{ song.title }}</h1>
           <NuxtImg
+            provider="cloudinary"
             class="h-48 mb-4 rounded-lg w-full object-cover"
             :src="song.image"
             :alt="song.title"
