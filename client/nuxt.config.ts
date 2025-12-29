@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         '@nuxt/image'
     ],
     image: {
+        provider: 'ipx',
         domains: ['res.cloudinary.com'],
         format: ['avif', 'webp', 'png', 'jpeg'],
     },
