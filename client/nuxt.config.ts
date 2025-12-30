@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         cloudinary: {
           baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
         },
-        format: ['avif', 'webp', 'png', 'jpeg'],
+        formats: ['avif', 'webp', 'png', 'jpeg'],
     },
     css: [
         '~/assets/css/tailwind.css'
