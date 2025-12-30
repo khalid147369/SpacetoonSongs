@@ -9,13 +9,27 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@nuxt/image'
     ],
-    image: {
-      provider: 'ipx', 
-      providers: {
-         cloudinary: {
-          baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
-         }
-     },
+  image: {
+    provider: 'ipx',
+    
+    providers: {
+      ipx: {
+      },
+      cloudinary: {
+        baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
+      }
+    },
+
+    format: ['webp', 'avif', 'png', 'jpeg'],
+    
+    presets: {
+      default: {
+        modifiers: {
+          format: 'webp',
+        }
+      }
+    }
+  },
  
   format: ['webp', 'avif', 'png', 'jpeg'],
 },
