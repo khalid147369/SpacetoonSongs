@@ -9,14 +9,13 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@nuxt/image'
     ],
-image: {
-    cloudinary: {
-      baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
+    image: {
+        provider: 'ipx',
+        cloudinary: {
+          baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
+        },
+        format: ['avif', 'webp', 'png', 'jpeg'],
     },
-
-    format: ['webp', 'avif', 'png', 'jpeg']
-    
-  },
     css: [
         '~/assets/css/tailwind.css'
     ],
