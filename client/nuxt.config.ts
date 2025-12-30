@@ -14,15 +14,8 @@ image: {
       baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
     },
 
-    format: ['webp', 'avif', 'png', 'jpeg'],
+    format: ['webp', 'avif', 'png', 'jpeg']
     
-    presets: {
-      default: {
-        modifiers: {
-          format: 'webp'
-        }
-      }
-    }
   },
     css: [
         '~/assets/css/tailwind.css'
