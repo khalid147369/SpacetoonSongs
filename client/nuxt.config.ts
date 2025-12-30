@@ -9,7 +9,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@nuxt/image'
     ],
-  image: {
+image: {
     provider: 'ipx',
     
     providers: {
@@ -30,9 +30,6 @@ export default defineNuxtConfig({
       }
     }
   },
- 
-  format: ['webp', 'avif', 'png', 'jpeg'],
-},
     css: [
         '~/assets/css/tailwind.css'
     ],
