@@ -36,6 +36,7 @@ onMounted(() => {
           class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
           <NuxtImg
+            provider="ipx"
             class="w-full rounded-t-lg object-cover"
             src="/imgs/lu.png"
             width="320"
@@ -57,6 +58,7 @@ onMounted(() => {
           class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
           <NuxtImg
+            provider="ipx"
             class="w-full rounded-t-lg object-cover"
             src="/imgs/na.png"
             width="320"
@@ -78,6 +80,7 @@ onMounted(() => {
           class="rounded-lg bg-dark-gray shadow-lg transition-transform duration-300 hover:scale-[1.02]"
         >
           <NuxtImg
+            provider="ipx"
             class="w-full rounded-t-lg object-cover"
             src="/imgs/go.png"
             width="320"
