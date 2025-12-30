@@ -10,11 +10,8 @@ export default defineNuxtConfig({
         '@nuxt/image'
     ],
 image: {
-
-    providers: {
-      cloudinary: {
-        baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
-      }
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
     },
 
     format: ['webp', 'avif', 'png', 'jpeg'],
