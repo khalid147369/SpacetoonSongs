@@ -13,8 +13,6 @@ image: {
     provider: 'ipx',
     
     providers: {
-      ipx: {
-      },
       cloudinary: {
         baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
       }
