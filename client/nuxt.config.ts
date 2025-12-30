@@ -10,12 +10,15 @@ export default defineNuxtConfig({
         '@nuxt/image'
     ],
     image: {
-        provider: 'ipx',
-        cloudinary: {
-        baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
-    },
-        format: ['avif', 'webp', 'png', 'jpeg'],
-    },
+      provider: 'ipx', 
+      providers: {
+         cloudinary: {
+          baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
+         }
+     },
+ 
+  format: ['webp', 'avif', 'png', 'jpeg'],
+},
     css: [
         '~/assets/css/tailwind.css'
     ],
