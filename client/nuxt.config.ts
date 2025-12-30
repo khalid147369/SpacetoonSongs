@@ -19,7 +19,7 @@ image: {
     presets: {
       default: {
         modifiers: {
-          format: 'webp',
+          format: 'webp'
         }
       }
     }
