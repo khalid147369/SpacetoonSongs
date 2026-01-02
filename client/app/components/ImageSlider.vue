@@ -1,5 +1,27 @@
+<script lang="ts" setup>
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { useImagesStore } from "../../stores/imgs";
+
+const imagesStore = useImagesStore();
+const { images, loading } = storeToRefs(imagesStore);
+
+onMounted(() => {
+  imagesStore.fetchAll();
+});
+</script>
 <template>
+  <div
+    v-if="loading"
+    class="h-550px flex justify-center items-center text-white text-2xl"
+  >
+    Loading...
+  </div>
   <swiper
+    v-else
     :modules="[Navigation, Pagination, Autoplay]"
     :slides-per-view="1"
     :space-between="0"
@@ -9,52 +31,20 @@
     loop
     class="my-swiper w-full h-550px"
   >
-    <swiper-slide>
+    <swiper-slide v-for="img in images" :key="img._id">
       <NuxtImg
-        src="/imgs/1.png"
+        :src="img.image"
         format="webp"
         width="1200"
         height="600"
         loading="eager"
         fetchpriority="high"
-        alt="1"
-        class="slider-image"
-      />
-    </swiper-slide>
-    <swiper-slide>
-      <NuxtImg
-        src="/imgs/2.png"
-        format="webp"
-        width="1200"
-        height="600"
-        loading="eager"
-        fetchpriority="high"
-        alt="2"
-        class="slider-image"
-      />
-    </swiper-slide>
-    <swiper-slide>
-      <NuxtImg
-        src="/imgs/3.png"
-        format="webp"
-        width="1200"
-        height="600"
-        loading="eager"
-        fetchpriority="high"
-        alt="3"
+        :alt="img.title"
         class="slider-image"
       />
     </swiper-slide>
   </swiper>
 </template>
-
-<script setup>
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-</script>
 
 <style>
 .my-swiper {

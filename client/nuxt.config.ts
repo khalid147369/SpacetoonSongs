@@ -12,9 +12,9 @@ export default defineNuxtConfig({
     image: {
         provider: 'ipx',
         cloudinary: {
-          baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
+            baseURL: 'https://res.cloudinary.com/dwxkdvgxk/image/upload/'
         },
-        formats: ['avif', 'webp', 'png', 'jpeg'],
+        format: ['avif', 'webp', 'png', 'jpeg'],
     },
     css: [
         '~/assets/css/tailwind.css'
